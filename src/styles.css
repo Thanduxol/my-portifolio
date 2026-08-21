@@ -1,0 +1,180 @@
+@import "tailwindcss" source("../");
+
+@plugin "tailwindcss-animate";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* -------------------------------------------------------------------------
+   Portfolio palette — deep maroon, rich green, charcoal, warm cream.
+   Single, always-on dark theme (no light-mode toggle by design).
+------------------------------------------------------------------------- */
+:root {
+  --charcoal: #0d0c0b;
+  --charcoal-elevated: #17140f;
+  --charcoal-card: #1d1914;
+  --maroon: #7a2138;
+  --maroon-bright: #a5304a;
+  --maroon-deep: #4a1422;
+  --green: #1f5c3f;
+  --green-bright: #35895f;
+  --green-deep: #133b28;
+  --cream: #f4ead4;
+  --cream-dim: #cabf9f;
+  --cream-faint: rgba(244, 234, 212, 0.55);
+  --hairline: rgba(244, 234, 212, 0.1);
+
+  --background: var(--charcoal);
+  --foreground: var(--cream);
+  --card: var(--charcoal-card);
+  --card-foreground: var(--cream);
+  --popover: var(--charcoal-card);
+  --popover-foreground: var(--cream);
+  --primary: var(--maroon-bright);
+  --primary-foreground: var(--cream);
+  --secondary: var(--green-deep);
+  --secondary-foreground: var(--cream);
+  --muted: var(--charcoal-elevated);
+  --muted-foreground: var(--cream-dim);
+  --accent: var(--green);
+  --accent-foreground: var(--cream);
+  --destructive: #b03636;
+  --destructive-foreground: var(--cream);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--maroon-bright);
+  --radius: 1rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-elevated: var(--charcoal-elevated);
+  --color-charcoal-card: var(--charcoal-card);
+  --color-maroon: var(--maroon);
+  --color-maroon-bright: var(--maroon-bright);
+  --color-maroon-deep: var(--maroon-deep);
+  --color-green: var(--green);
+  --color-green-bright: var(--green-bright);
+  --color-green-deep: var(--green-deep);
+  --color-cream: var(--cream);
+  --color-cream-dim: var(--cream-dim);
+  --color-hairline: var(--hairline);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  ::selection {
+    background: var(--maroon-bright);
+    color: var(--cream);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(
+      100deg,
+      var(--cream) 0%,
+      var(--maroon-bright) 45%,
+      var(--green-bright) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glow-maroon {
+    box-shadow: 0 0 0 1px var(--hairline), 0 20px 60px -20px rgba(165, 48, 74, 0.35);
+  }
+
+  .glow-green {
+    box-shadow: 0 0 0 1px var(--hairline), 0 20px 60px -20px rgba(53, 137, 95, 0.35);
+  }
+
+  .section-heading-line {
+    background: linear-gradient(
+      90deg,
+      var(--maroon-bright),
+      var(--green-bright)
+    );
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(20px, -30px) rotate(8deg); }
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-25px, 25px) rotate(-6deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float-slow {
+  animation: float-slow 12s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 16s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 6s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
